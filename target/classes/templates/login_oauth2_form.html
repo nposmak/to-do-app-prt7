@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration Page</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <link href="../static/css/style.css"
+          th:href="@{/css/style.css}" rel="stylesheet"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+    <br><br><br>
+    <div class="card text-center mx-auto" style="width: 28rem;">
+        <div class="card-body">
+            <h4 class="card-title">Login please.</h4>
+            <br><br>
+
+            <a class="card-link" th:href="@{/oauth2/authorization/google}">Log In with Google</a>
+
+
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration Page</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <link href="../static/css/style.css"
+          th:href="@{/css/style.css}" rel="stylesheet"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+
+    <br><br><br>
+    <div class="card text-center mx-auto" style="width: 28rem;">
+        <div class="card-body">
+            <h4 class="card-title">Login please.</h4>
+            <br><br>
+
+            <form method="post" th:action="@{/login-myapp}">
+                <input class="form-control" name="email" type="text" placeholder="Email"
+                       aria-label="default input example">
+                <br>
+                <input class="form-control" name="password" type="password" placeholder="Password"
+                       aria-label="default input example">
+                <br>
+                <button type="submit" class="btn btn-primary" style="width: 120px;height: 40px">Log In</button>
+            </form>
+<!--            <br>-->
+<!--            <a class="card-link" href="/login/oauth2/code/google">Log In with Google</a>-->
+
+
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

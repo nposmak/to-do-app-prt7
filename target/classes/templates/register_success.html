@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration completed</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <link href="../static/css/style.css"
+          th:href="@{/css/style.css}" rel="stylesheet"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+
+    <div class="card text-center mx-auto" style="width: 35rem;">
+        <div class="card-body">
+            <br>
+            <h4 class="card-title">Registration completed successfully! Now you can log in or return on home page.</h4>
+            <br>
+            <a th:href="@{/login-myapp}" class="btn btn-primary" style="width: 120px;height: 40px;">Log In</a>
+            <br><br>
+            <a th:href="@{/}" class="btn btn-primary" style="width: 120px;height: 40px;">Home</a>
+            <br><br>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
