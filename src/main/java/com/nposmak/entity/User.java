@@ -69,4 +69,11 @@ public class User {
 
     public User() {
     }
+
+//	public String getRoles() {
+//		return roles.;
+//	}
+
+    
+    
 }

@@ -24,6 +24,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import com.nposmak.security.oauth2.CustomOAuth2User;
 import com.nposmak.security.oauth2.CustomOAuth2UserService;
+import com.nposmak.security.oauth2.OAuth2LoginSuccessHandeler;
 import com.nposmak.security.oauth2.SaveUserOAuth2Service;
 
 //@EnableOAuth2Client
@@ -37,12 +38,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private LoginSuccessHandler loginSuccessHandler;
+    
+    @Autowired
+    private OAuth2LoginSuccessHandeler aouth2LoginSuccessHandeler;
 
     @Autowired
     private CustomOAuth2UserService oAuth2Service;
     
-    @Autowired
-    private SaveUserOAuth2Service saveByOAuth2Service;
+    //@Autowired
+    //private SaveUserOAuth2Service saveByOAuth2Service;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -117,22 +121,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .userInfoEndpoint()
                         .userService(oAuth2Service)
                         .and()
+                        .successHandler(aouth2LoginSuccessHandeler)
                         //.defaultSuccessUrl("/")
-                        .successHandler(new AuthenticationSuccessHandler() {
-							
-							@Override
-							public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-									Authentication authentication) throws IOException, ServletException {
-								// TODO Auto-generated method stub
-								CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
-								String oA2username = oAuth2User.getName(); 
-								System.out.println(oAuth2User);
-								//saveByOAuth2Service.processOAuth2PostLogin(oAuth2User.getName());
-								saveByOAuth2Service.processOAuth2PostLogin(oAuth2User);
-								response.sendRedirect("/users/" + oA2username);
-								
-							}
-						})
+//                        .successHandler(new AuthenticationSuccessHandler() {
+//							
+//							@Override
+//							public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+//									Authentication authentication) throws IOException, ServletException {
+//								// TODO Auto-generated method stub
+//								CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
+//								String oA2username = oAuth2User.getName(); 
+//								System.out.println(oAuth2User);
+//								//saveByOAuth2Service.processOAuth2PostLogin(oAuth2User.getName());
+//								saveByOAuth2Service.processOAuth2PostLogin(oAuth2User);
+//								response.sendRedirect("/users/" + oA2username);
+//								
+//							}
+//						})
 
                             .and()
                             .logout()

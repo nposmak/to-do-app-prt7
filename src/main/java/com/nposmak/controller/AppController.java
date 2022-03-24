@@ -27,8 +27,10 @@ public class AppController {
 
     @Autowired
     private UserRepository userRepo;
+    
     @Autowired
     private RoleRepository roleRepo;
+    
     @Autowired
     private TaskRepository taskRepo;
 
@@ -47,42 +49,7 @@ public class AppController {
         return "index";
     }
 
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
-        return "signup_form";
-    }
-
-    @GetMapping("/login-myapp")
-    public String loginForm(){
-        return "login_form";
-    }
-
-    @GetMapping("/login")
-    public String loginOauth2(){
-
-        return "login_oauth2_form";
-    }
-
-    @GetMapping("/logout")
-    public String logoutForm(){
-        return "logout_form";
-    }
-
-    @PostMapping("/process_register")
-    public String processRegister(User user) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepo.findByid(2));
-        user.setRoles(roles);
-        user.setEnabled(true);
-        userRepo.save(user);
-
-        return "register_success";
-    }
-
+    
     //@PreAuthorize("#userName == principal.username || #oauth2.isUser")
     @PreAuthorize("#userName == principal.username")
     @GetMapping(value = "/users/{userName}")
@@ -124,20 +91,6 @@ public class AppController {
         String wtf = authentication.getName();
         return "redirect:/users/" + wtf;
 
-    }
-
-    @PreAuthorize("hasAuthority('admin')")
-    @GetMapping(value = "/admin/all-users")
-    public String checkUserList(Model model) {
-        List<User> allUsers = (List<User>) userRepo.findAll();
-        model.addAttribute("allUsers", allUsers);
-        return "admins_page";
-    }
-
-    @PostMapping(value = "/deleteuser/{id}")
-    public String deleteUser(@PathVariable long id) {
-        userRepo.deleteById(id);
-        return "redirect:/admin/all-users";
     }
 
 
